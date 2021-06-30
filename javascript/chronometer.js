@@ -29,6 +29,10 @@ class Chronometer {
 
   }
 
+  getMilliseconds() {
+    
+  }
+
   computeTwoDigitNumber(value) {
    
     if (value < 10) {
