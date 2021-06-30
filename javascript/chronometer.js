@@ -13,24 +13,22 @@ class Chronometer {
         callback()
       }
 
-    }, 1000)
+    }, 10)
 
   }
 
   getMinutes() {
-    
-    return Math.floor(this.currentTime / 60)
-
+    let minutesNoMilli = (this.currentTime - this.getMilliseconds()) / 100;
+    let minutesNoSecs = minutesNoMilli - this.getSeconds();
+    return minutesNoSecs / 60;
   }
-
   getSeconds() {
-    
-    return this.currentTime % 60
-
+    let seconds = (this.currentTime - this.getMilliseconds()) / 100;
+    let extraSeconds = seconds % 60;
+    return extraSeconds;
   }
-
   getMilliseconds() {
-    
+    return this.currentTime % 100;
   }
 
   computeTwoDigitNumber(value) {
@@ -57,7 +55,7 @@ class Chronometer {
 
   split() {
     
-    return `${this.computeTwoDigitNumber(this.getMinutes())}:${this.computeTwoDigitNumber(this.getSeconds())}`
+    return `${this.computeTwoDigitNumber(this.getMinutes())}:${this.computeTwoDigitNumber(this.getSeconds())}:${this.computeTwoDigitNumber(this.getMilliseconds())}`
 
   }
 }
